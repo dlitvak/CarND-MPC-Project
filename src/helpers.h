@@ -60,4 +60,16 @@ VectorXd polyfit(const VectorXd &xvals, const VectorXd &yvals, int order) {
   return result;
 }
 
+struct Point {
+    double x;
+    double y;
+};
+Point transform_to_car_coord(double pointx, double pointy, double carx, double cary, double ang) {
+    double cos_ang = cos(ang);
+    double sin_ang = sin(ang);
+    double px = (pointx * cos_ang + pointy * sin_ang) - (carx * cos_ang + cary * sin_ang);
+    double py = - (pointx * sin_ang - pointy * cos_ang) + (carx * sin_ang - cary * cos_ang);
+    return Point{px, py};
+}
+
 #endif  // HELPERS_H
