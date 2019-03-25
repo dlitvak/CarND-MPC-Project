@@ -34,9 +34,9 @@ MPC is using the initial State and the "bicycle" model of the car motion to pred
 of the future car travel.  The path is predicted  according to the following update equations:
 ```
 x := x + v*cos(ψ)* dt
-y := y + v sin(ψ) dt
-v := v+a∗dt constrained to _a_ in [-1,1]
-ψ := ψ - (v/L_f)*δ*dt constrained to δ in [-0.436, 0.436] radians (max possible car's turn range)
+y := y + v*sin(ψ)*dt
+v := v+a*dt               constrained to _a_ in [-1,1]
+ψ := ψ - (v/L_f)*δ*dt    constrained to δ in [-0.436, 0.436] radians (max possible car's turn range)
 ```
 
 MPC class relies on Ipopt library to optimally predict the curve.  It uses a cost function that
