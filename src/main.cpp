@@ -82,12 +82,12 @@ int main() {
                     VectorXd state(6);
                     double x_lat = v * MPC::LATENCY_DT;
                     double psi_lat = -delta*deg2rad(25) * v / MPC::Lf * MPC::LATENCY_DT;
-                    double a_lat = v + accel * MPC::LATENCY_DT;
+                    double v_lat = v + accel * MPC::LATENCY_DT;
                     double cte_lat = cte + v * sin(epsi) * MPC::LATENCY_DT;
                     state << x_lat,
                             0,
                             psi_lat,
-                            a_lat,
+                            v_lat,
                             cte_lat,
                             psi_lat - epsi;
 
