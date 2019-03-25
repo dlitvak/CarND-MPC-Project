@@ -12,7 +12,7 @@ class MPC {
 
   virtual ~MPC();
 
-  static constexpr double LATENCY_SECONDS = 0.1;
+  static constexpr double LATENCY_DT = 0.1;
   static constexpr double Lf = 2.67;
 
   struct Solution {

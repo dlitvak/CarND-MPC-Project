@@ -44,12 +44,10 @@ class FG_eval {
       // Any additions to the cost should be added to `fg[0]`.
       fg[0] = 0;
 
-      // Reference State Cost
       /**
-       * TODO: Define the cost related the reference state and
-       *   anything you think may be beneficial.
+       * Define the cost related the reference state
        */
-      // The part of the cost based on the reference state.
+      // The part of the cost based on the reference state: penalize non-zero cte and epsi
       for (int t = 0; t < N; ++t) {
           fg[0] += 2000 * CppAD::pow(vars[cte_start + t], 2);
           fg[0] += 1000 * CppAD::pow(vars[epsi_start + t], 2);
@@ -120,7 +118,7 @@ class FG_eval {
           // CppAD can compute derivatives and pass these to the solver.
 
           /**
-           * TODO: Setup the rest of the model constraints
+           * Setup the rest of the model constraints
            */
 
           fg[1 + x_start + t] = x1 - (x0 + v0 * CppAD::cos(psi0) * dt);
@@ -155,10 +153,7 @@ MPC::Solution MPC::Solve(const VectorXd &state, const VectorXd &coeffs) {
     double epsi = state[5];
 
   /**
-   * TODO: Set the number of model variables (includes both states and inputs).
-   * For example: If the state is a 4 element vector, the actuators is a 2
-   *   element vector and there are 10 timesteps. The number of variables is:
-   *   4 * 10 + 2 * 9
+   * Set the number of model variables (includes both states and inputs).
    */
   size_t n_vars = N * 6 + (N - 1) * 2;
   /**
